@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function test2() {
+            //같은 이름의 변수를 선언은 가능함.
+            //그렇지만 마지막에 할당된 값으로 설정됨.
+            var name = 'a';
+            var name = 'v';
+            console.log(name);
+            alert(name);
+            //하지만 let은 재선언이 안됨
+            let name1 = 'a';
+            //let name1 = 'b'; //Identifier 'name1' has already been declared
+            console.log(name1);
+            alert(name1);
+        }
+        //test2();
+    </script>
+</head>
+
+<body>
+    1111111111111s111as1111assasfsasas
+    <input type="button" value="클릭해주세요." onclick="test2()">
+</body>
+
+</html>
