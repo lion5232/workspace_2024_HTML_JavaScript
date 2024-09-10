@@ -92,3 +92,6 @@ ul 태그 는 점이 찍힌다.
 
 innerHTML은 <div>여기</div> 여기에 값이 들어간다.
 
+
+JQUERY (jquery.com)
+

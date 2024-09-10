@@ -152,4 +152,19 @@
 //     bar2(100);
 //     bar2(90);
 //     bar2(80);
-   
+
+// 클로저 함수선언 후 바로 실행 사용법 
+(function hello() {
+    console.log('IIFE');
+})();
+
+const result = (function (){
+    let name = "John";
+    return name;
+})();
+console.log(result);
+
+const total = ((x,y) => x+y); //파라미터 사용
+console.log(`total: ${total(1,2)}`);
+
+
