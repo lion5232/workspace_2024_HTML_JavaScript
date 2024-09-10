@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" > 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!--html:5을 선택해 만들면 몇가지 타입이 추가된다.-->
+    <title>Document</title>
+</head>
+<body> <!--document 객체 -->
+
+<!--참조 자료형 사용 오류-->
+    <script>
+        const data = [
+            { 'name': 'A', 'score': 77 },
+            { 'name': 'B', 'score': 88 },
+            { 'name': 'C', 'score': 66 },
+            { 'name': 'D', 'score': 55 },
+        ];
+        function check(data) {
+            const result = []; 
+            //const person = {}; //<-- 여기가 문제 ... 해결하려면 const person = {}; 를
+            data.forEach(value => {
+                const person = {}; // 반복문 안에서 새 객체 생성 왜? 참조 자료형이니까.
+                //check 함수에서 문제는 반복문 내부에서 person 객체를 새로 생성하지 않고 반복적으로 같은 객체를 수정하기 때문에 발생합니다.
+                person['name'] = value.name; //[]대신에 .을 사용해도 된다.
+                person['score'] = value.score;
+                person['pass'] = value.score > 60 ? true : false;
+                result.push (person);
+            });
+            return result;
+        }
+        function show(data){
+            let code = '<ol>';
+                data.forEach(value => {
+                    code += `<li>${value.name}, ${value.score}, ${value.pass}</li>`;
+                });
+                code += '</ol>';
+                document.querySelector('#list').innerHTML = code;
+        }
+        const d =check(data);
+        show(d);
+    </script>
+</body>
+</html>
+
+
+<!--javascript, css에서 속성을 불러올 때 조건-->
+<!--id, name 속성 첫줄만 읽기 때문에 오로지 하나를 지정할 때만 사용한다.-->
+<!--class 속성 동일한 클래스의 객체들을 공통으로 지정할 수 있다.-->
+
+<!-- document.queryselector('#list').innerHTML = code; 
+document라는 돔 객체가 바디안을 스캔하면서 아이디가 list인 객체를 가져와 HTML안에 있는 그 문장에 code를 집어 넣어라는 명령어.  
+-->
+
+<!--
+코맨트 기능 동작 원리
+처음에는 아무것도 안보임
+댓글을 작성하면 ajax로 코맨트 기능만을 따로 서버에서 json형태로 받아와서 쫙 뿌려준다.
+-->
+
+
+<!--JSON 이란? 데이터 표현식-->
+<!--
+비동기 vs 동기
+자바 스크립트와 자바와는 서로 실행 불가 대신에 데이터를 json형태로 바꿔서
+restAPI를 사용..
+ECMA-262 : javascript의 표준
+-->
+<!-- 대괄호안에 여러가지 중괄호(DTO)(키:value)가 존재하면 json(JavaScript Object Notation)이다.
+ JSON 표현식은 기본적으로 { String key : String value }이며 복수로 쓰면
+[   
+    {String key : String value},
+    {String key : String value},
+    {String key : String value},
+    {String key : String value},  
+]; 이런 식이다.-->
+
+
