@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Change Background</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+/**
+ * 대상 : div
+ * 기능 : background를 yellow로 변경 (css)
+ */
+	function run() {
+	 // 속성에서 (background) 한개만 쓰면 그 태그 안의 속성을 가져온다.
+	 // 속성에서 (background, yellow) 파라미터가 2개면 그 속성을 태그에 지정한다.
+// 	 $("#target").css("background","yellow"); //태그의 아이디가 target인 아이를 변경 - css(속성이름 : 값)
+// 	 $("div").css("background","yellow"); //div 태그가 여러가지면 배열로 받아서 전부 바꿀수도 있고 홀수 번째만 바꾸던지 조건을 줄 수도 있다.
+// 	 $("div[human=1]").css("background","yellow"); // 편법- 태그[속성]
+// 	 $("body > div").css("background","yellow"); // >는 태그 밑에 자식으로 존재하는 태그 - body 안에 있는 div 태그를 지정
+// 	 $("body div").css("background","yellow"); // 공백도 마찬가지인데 차이점은 자손과 후손의 차이이다. 
+//   (>)자손은 바로 밑에 있는 자식, (공백)후손은 그보다 더 밑에 있는 모든 태그를 가리킨다. 
+//   .뒤에오는건 함수이다. 
+  	 $("body").children().eq(0).css("background","yellow");//.children(): 자식들을 다 읽어온다. eq(숫자) 순서로 위에서부터 번호를 매긴다. 
+//  홀수는 en+1 (even number +1) 이다.
+	 //$("input").prev().css("background","yellow"); // next 나 prev 는 html 구조상 같은 선상에 있는 객체를 지정할 때 쓴다.		
+	 //다음 또는 이전을 했을때 뒤나 앞이 없다면 찾지 못해 적용이 되지 않는다.
+	}
+</script>
+
+</head>
+
+<body>
+	<div id="target" human="1"
+		style="color: rgb(255, 255, 255); width: 150px; height: 100px; float: left; border: 1px solid rgb(34, 34, 34); background-color: rgb(34, 139, 34); margin: 10px; padding: 5px; background-position: initial initial; background-repeat: initial initial;">
+		#target<br />
+	</div>
+	<input type="button" value="run" onclick="run()" />
+</body>
+</html>

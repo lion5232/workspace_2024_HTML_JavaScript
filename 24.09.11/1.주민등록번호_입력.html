@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+// 	$(document).ready(function() {
+// 		$("input[name=jumin1]").keyup(function() {
+// 			var len = $(this).val().length;
+// 			if(len == 6) {
+// 				$("input[name=jumin2]").focus();
+// 			}
+// 		});
+// 	});
+	
+	$(function() { //바로 실행 가능
+		$("input[name=jumin1]").on("keyup",function() {
+			var len = $(this).val().length; //언제 var를 쓰고 let를 쓰는지 궁금하다.
+			if(len == 6) {
+				$("input[name=jumin2]").focus();
+			}
+		});
+	});
+</script>
+</head>
+<body>
+	주민번호 : <input type="text" name="jumin1" maxlength="6" 
+	onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" /> <!-- (onkeyup)키를 입력했다가 놨을때 동작해서 그 값을 받아온다. 그리고 replace로 값을 바꾼다.-->
+	- 
+	<input type="text" name="jumin2" maxlength="7" 
+	onkeyup="this.value=this.value.replace(/[^0-9]/g,'')" />
+</body>
+
+<!-- 정규 표현식 -->
+ <!--
+/
+ [^0-9] 조건 :^는 not을 의미한다. 0-9가 아니면 '' 공백으로 바꾼다.
+ g는 global 끝까지를 의미한다.
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

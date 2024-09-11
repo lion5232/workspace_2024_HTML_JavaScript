@@ -1,0 +1,30 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>2-2_select 버튼확인</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+		function selectBtn() {
+			$("option").each(function() {
+				if($(this).is(":selected")) {
+					console.log($(this).val() + "번");
+				}
+			});
+			
+			alert($("option:selected").text());
+		}
+	</script>
+</head>
+
+<body>
+	<select multiple="multiple">  <!-- 여러개 선택가능 브라우저에 표현되는 모양이 달라짐 ctrl로 다중 지정할 수 있음-->
+	<!-- <select> 드롭 다운 옵션이 <option>을 이용해 만들 수 있음 -->
+		<option value="1" selected>1번</option>
+		<option value="2">2번</option>
+		<option value="3">3번</option>
+	</select>
+	<br>
+	<input type="button" value="버튼확인" onclick="selectBtn()">
+</body>
+
+</html>

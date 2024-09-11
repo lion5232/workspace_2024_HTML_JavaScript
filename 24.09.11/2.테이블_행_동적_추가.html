@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+	$(document).ready(function (){
+		$("input[name=title]").focus();
+		$("input[name=btn]").on("click",function (){
+		//$("input[type=button]").on("click",function (){ //위와 동일하다.
+			let title = $("input[name=title]").val();
+			let content =$("input[name=content]").val();
+			let owner=$("input[name=owner]").val();
+			let addHtml ="<tr>" +"<td>"+ title+"</td>"
+			             +"<td>"+ content+"</td>"
+			             +"<td>"+ owner+"</td>"+"</tr>";
+			$(addHtml).appendTo("table");	//$중괄호는 선택한다. 여기서는 addHtml 문자열을 선택한 것 
+			// 구문 A appendTo B   A를 B태그 안에다가 마지막에 추가한다.
+			// 구문 A prependTo B  A를 B태그 맨 앞에 추가한다.	
+			// 구문 B append A  == A appendTo B		
+			$("input[type=text]").val("");
+			$("input[name=title]").focus();
+		})
+		
+	});		
+	</script>
+</head>
+<body>
+	<fieldset> <!-- 비동기 코멘트 기능 같은 경우 무조건 서버에 가서 들렀다가 다시 와서 화면에 출력한다. -->
+		<legend>입력하시오</legend> <!-- 제목 -->
+		<label for="title">제목 : </label> <!--레이블 태그를 쓰면 for 속성을 추가하면 for 속성의 값과 일치하는 ID를 가진 첫 번째 요소를 포커스 한다.
+		제일 처음에 forcus가 된다.-->
+		<input type="text" name="title" id="title"/><br />
+		<label for="content">내용 : </label>
+		<input type="text" name="content" id="content"/><br />
+		<label for="owner">작성자:</label> 
+		<input type="text" name="owner" id="owner"/><br />
+		<input type="button" name="btn" value="테이블에추가" />	
+	</fieldset>
+	
+	<table border="1">
+		<tr> <!-- 가로가 tr , 세로가 td-->
+			<td>제목</td>
+			<td>내용</td>
+			<td>작성자</td>
+		</tr>
+	</table>
+</body>
+
+</html>

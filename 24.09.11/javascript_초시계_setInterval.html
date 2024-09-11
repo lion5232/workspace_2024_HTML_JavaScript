@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title> New Document </title>
+  <meta charset="UTF-8" />
+  <script type="text/javascript">
+
+	var interval;
+
+	function ready() {
+		interval = setInterval(Timer,1000); //특정 조건 주면 계속 반복 즉 1초마다 시간을 찍으면 초시계가 된다.
+	}
+
+	function Timer() {
+		var now = new Date();
+		var H = now.getHours();
+		var M = now.getMinutes();
+		var S = now.getSeconds();
+		myForm.myText.value = "지금은 " + H + "시" + M + "분" + S + "초";
+	}
+
+	function stopInterval(){
+		clearInterval(interval);
+	}
+
+	ready();
+  </script>
+ </head>
+
+ <body>
+  <form name=myForm>
+	<input type="text" name="myText" style="text-align:center">
+	<input type="button" value="Stop" onclick="stopInterval()">
+	</form>
+
+ </body>
+</html>

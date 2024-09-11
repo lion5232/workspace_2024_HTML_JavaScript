@@ -1,0 +1,50 @@
+﻿<html>
+<head>
+<meta charset="utf-8">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#delFile").hide();	
+	});
+	function fnAddFile(event) {
+		//이벤트를 멈춤 - 링크를 타고 넘어가지 않게 됨
+		event.preventDefault(); //event.stopProagation() - 이벤트의 전파를 막음  ※맨 밑에 설명 참고
+		var addHtml = "<input type='file' name='file' /><br />";		
+		$(addHtml).appendTo("body");
+		$("#delFile").show();
+		
+	}
+	function fnDelFile(event) {
+		//스크롤이 위로 올라가는걸 막아줌
+		event.preventDefault();
+		$("input[type=file]").last().remove();
+		$("br").last().remove(); //이것도 같이 삭제해줘야 기능이 제대로 수행된다. 아니면 다시 추가 할때 한칸 건너뛰고 생성된다.
+		var fileLength = $("input[type=file]").length;
+		if(fileLength == 1) {
+			$("#delFile").hide();
+		}
+		
+	}
+		
+	</script>
+</head>
+<body>
+	<input type="file" name="file" /> 
+	<a href="https://www.google.com" id="addFile" onclick="fnAddFile(event)">파일추가</a> 
+	<a href="#" id="delFile" onclick="fnDelFile(event)">삭제</a>
+	<br />
+	
+</body>
+
+</html>
+
+<!--event.stopProagation() -->
+<!-- <div>
+		<span>
+			<a>
+				<a></a>
+			</a>
+		</span>
+	</div> -->
+<!-- 기존에는 태그 가장 안쪽에 있는 <a>를 실행 시키면 위로 올라가면서 부모의 이벤트도 같이 동작하도록 한다.-->
+<!-- 그렇지만 오로지 가장 안쪽에 있는 <a>만 이벤트를 수행시키고 싶을땐 event.stopProagation()를 쓰면 된다.-->	

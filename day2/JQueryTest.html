@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+        <div id="test"></div>
+        <div id="test1"></div>
+        <input type="text" id="nick">
+
+        <input type="button" value="값을 바꿔보자~~">
+
+        <script>
+        $(document).ready(function(){
+            // #은 아이디를 찾음
+            $("#test").text("111111111111");
+            $("#nick").val("323232323");
+            $("#test1").html("<h2>벌써 7교시가 끝나네요</h2>");
+
+            $("input[type=button]").on("click", function(){
+                $("#test").text("내용이 바뀝니다");
+            });
+            
+        });
+        
+
+        </script>
+    
+</body>
+</html>
