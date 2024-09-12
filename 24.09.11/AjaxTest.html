@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=<device-width>, initial-scale=1.0"> -->
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div id="target"> </div>
+
+    <input type="button" id="btn" value="클릭">
+
+    <script>
+        $(function () {
+            $("#btn").on("click", function () {
+                //서버에서 비동기를 읽어올 것
+                //
+                $.ajax({
+                    url: "https://localhost:8080/json", //주소가 어디냐?
+                    type: "POST",
+                    async: true,
+                    dataType: "json",
+                    data: {
+                        today: "수요일",
+                        human: 4
+                    },
+                    complete: function (data) {//서버가 성공적으로 실행되면 실행되는 코드
+                        alert(data)
+                        //sshowHtml(data);
+                    },
+                    error: function(xhr){
+                        alert("error html = " +xhr.statuText);
+                    }
+                });
+            })
+        });
+    </script>
+
+</body>
+
+</html>
+
+<!--
+ajax는 비동기 자바스크립트 xml입니다.
+비동기로 서버와 통신하고 json,xml, html, text 등의 값을 주고 받을 수 있다.
+
+-->
