@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>리액트로 디지털 시계 만들기</title>
+  </head> 
+  <!--클래스형 컴포넌트를 이용함-->
+  <!-- 상태변수값 초기화, 사용, 갱신 후 랜더링이라는 패턴 연습 -->
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+        
+    <script type="text/babel">
+
+
+  class MyClock extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          curTime:new Date()
+        };
+        //3. 상태변수 갱신 -> 반복 타이머를 통해서 1초마다 현재시간 획득-> 갱신
+        setInterval( ()=>{
+          this.setState({curTime:new Date()});
+        }, 1*1000);//10시 10분 강의 강사님께서 말씀하시는 원리 다시 듣기
+      }
+        //필수 구현
+        render() {
+          //시계 데이터 추출
+          //2. 상태변수에서 관리하는 curTime을 사용
+          //const date = new Date();
+          const {curTime} = this.state;
+          const h = curTime.getHours();
+          const m = curTime.getMinutes();
+          const s = curTime.getSeconds();
+  
+          //JSX 리턴 
+          return (
+            <div> 
+              <ul> 
+                {/*시계 형태 표시*/}
+                <p>  시:{h} 분:{m} 초:{s} </p>
+              </ul>
+            </div>
+          );
+        }
+      }
+
+ 
+      let html = (
+        <div>
+           <MyClock/>
+        </div>
+      );
+
+
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

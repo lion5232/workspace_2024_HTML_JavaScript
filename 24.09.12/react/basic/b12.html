@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>컴포넌트 </title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    /*
+      이벤트 핸들러 함수는
+      - 3가지 형태로 정의 될 수 있다.
+        - 클래스의 맴버   
+        - 이벤트를 발생하는 요소의 inline 
+        - render() 함수의 내부함수
+      - 클래스의 맴버들  props, state를 접근할때 모두 동등한가? 체크 필요함 
+    */
+
+    class MyEvent extends React.Component {
+      constructor(props) { // 생성자 함수
+        super(props);
+      }
+
+      alertMemberHandler () { //내가 만든 맴버 함수
+        alert('유형 3 팝업, 맴버함수 호출');
+      } 
+      //필수 구현
+      render() { // 부모로 부터 상속받은 맴버 함수
+        // 유형 1: 이벤트 함수를 render 함수 내부에서 정의한다.
+        // 함수 내부에 함수가 존재 => 내부함수, 클로저,...
+        // 장점 :바로 확인 가능/ 단점: 화면 갱신시 매번 할당
+        const alertHandler = evt => {
+          alert('유형1 팝업');
+        }// 이게 내부함수이다. 대신에 매번 화면 갱신시 매번 할당된다.
+        
+        //JSX 리턴 
+        return (
+          <> {/*이벤트를 걸기*/}
+          <div onClick={alertHandler}>
+            클릭하면 팝업이 뜬다 1
+          </div>
+          {/* 이벤트함수가 해당 요송의 inline에 포함되어있다. 
+              // 장점 :바로 확인 가능/ 단점: 코드가 복잡하다 => react의 철학에 위배, 잘 사용 x
+            */}         
+          <div onClick={evt => alert('유형2 팝업')}>
+            클릭하면 팝업이 뜬다 2
+          </div>
+
+          {/*this 맴버변수*/}
+          <div onClick={this.alertMemberHandler}>
+            클릭하면 팝업이 뜬다 3
+          </div>
+          
+          </>
+        );
+      }
+    }
+
+
+
+    let html = (
+      <div>
+        <MyEvent/>
+      </div>
+    );
+    const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+    root.render(html);
+  </script>
+</body>
+
+</html>

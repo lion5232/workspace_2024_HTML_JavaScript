@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>클레스형 컴포넌트 구성(react 16이전까지는 주력형태)</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+
+      //클래스형 컴포넌트 구성, 먼저 정의후 사용 !!
+      class MyImg extends React.Component {
+        //필수 구현
+        render() {
+          let {src, label} = this.props; //맴버는 자신을 밝혀야 한다. props는 클래스형 컴포넌트의 맴버변수임
+          //JSX 리턴 
+          return (
+            <>
+              <img src={src}  width="300" /> 
+              <p>{label}</p>
+            </>
+          );
+        }
+      }
+
+      let html = ( //클래스 뒤에다가 작성해야함
+        <div>
+          <MyImg src="https://i.namu.wiki/i/m7aKglArMd92DbXFQoUViIGJvfnG2jStehaJL9wil1kaJmN-s_M2OfQEgyg8D1ITX7MCI5ew4wIp1N5YpAoK-utghqICSJjHgTKjzgHgsUfTBW17Y8hzL6vA6Yw5m1x-8-FbK_ukPASrcA29LP59lQ.webp" label="이미지제목/설명"/>
+        </div>
+      );
+    
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

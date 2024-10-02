@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>함수형 컴포넌트 구성</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      let html = (
+        <div>
+          {/* 사용자 정의 컴포넌트는 첫글자 대문자, 순수 html과 구분용도 */}
+          <Food name="돈까스" price="8000" />
+          <Food name="김밥" price="4000" />
+          <Food name="국밥" price="5000" />
+        </div>
+      );
+      // 함수형 컴포넌트(사용자 정의 엘리먼트) 정의
+      // 리액트로 구성한 화면은 순수html+컴포넌트의 조합 이다
+      function Food ( props ) {
+        // props는 태그의 속성
+        //console.log( props );
+        const {name, price} = props;
+        // 필수 JSX 리턴
+        return (
+          <>
+          <h3>오늘의 점심 {name}의 가격은 {price} 입니다.</h3>
+          </>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

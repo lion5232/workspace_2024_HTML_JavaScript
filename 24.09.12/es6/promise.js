@@ -102,9 +102,21 @@ class Test {
             console.log("결과");
         })
     }
+    
+    // 패턴을 활용하여 비동기 처리를 실제 사용할때 코드가 너무 길다!! depth는 짧지만 -> 좀 더 간략하게?
+    // async ~ await
+    // async는 함수 앞에 붙인다.
+    // 함수 내부에는 반드시 await를 사용해야 하고, 비동기 코드 앞에 배치해야함
+    async promise_test_upgrade () { //끝나야 다음이 작동된다.
+        //await :기다려, 작업 끝날때까지 (~기대해)
+        console.log( await this.es6_promise_define(this.FILE1));
+        console.log( await this.es6_promise_define(this.FILE2));
+        console.log( await this.es6_promise_define(this.FILE3));
+    }
 
 }
 const obj = new Test();
 //obj.sample();
 //obj.normal();
-obj.es6_promise_use();
+//obj.es6_promise_use();
+obj.promise_test_upgrade();

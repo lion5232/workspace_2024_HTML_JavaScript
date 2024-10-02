@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>컴포넌트 선택적 랜더링(조건식, 삼항연산자,...)</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    class MyChoice extends React.Component {
+      constructor(props) {
+        super(props);
+        //console.log(props);
+        this.state ={ //상태변수 정의
+          select:false // 선택, 비선택
+        };
+      }
+      
+      //필수 구현
+      render() {
+        const {name} = this.props;
+        const selectMark = this.state.select ? "■": "□";
+        const selectHandler = evt => {
+          //클릭 이벤트 발생 => 핸들러 호출 =>□ ->■ 로 변경됨
+          //(화면갱신 => 상태변수 변경 => 선택했다? 안했다? =>상태변수로 선택여부를 보관)
+
+          //상태값 변경
+          this.setState({select: !this.state.select}); //거짓이면 참으로, 반대도...
+        }// 이게 내부함수이다. 대신에 매번 화면 갱신시 매번 할당된다.
+        
+
+        //JSX 리턴 
+        return (
+          <div onClick={selectHandler}>
+            {/*해당 컴포넌트의 name 값을 추출하여 출력*/}
+           <p> {selectMark}{name}</p>
+          </div>
+          // {select  ? `■ ${name}` : `□ ${name}`}
+        );
+      }
+    }
+
+
+
+    let html = (
+      <div>
+        10월 첫째주 황금연휴에 어디를 갈까?
+        <MyChoice name ="삿포로" />
+        <MyChoice name ="하와이" />
+        <MyChoice name ="파리" />
+        <MyChoice name ="제주도" />
+      </div>
+    );
+    const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+    root.render(html);
+  </script>
+</body>
+
+</html>

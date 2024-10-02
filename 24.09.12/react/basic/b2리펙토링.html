@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>응용#1-새로고칠때마다 내용이 변경된다</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+       
+      function createDynamicJSX () {
+        const value = Math.floor( Math.random() * 3 );
+        if ( value == 0 )      {
+          return <p>리액트</p>;
+        }
+        else if ( value == 1 ) {
+          return <p>리덕스</p>;
+        }
+        else {
+          return <p>넥스트JS</p>;
+        }
+      }
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성 
+      root.render( createDynamicJSX() );
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSX에 css 적용</title>
+
+    <style>
+      /*이 문서 상의 모든  p 요소는 글자색이 보라색이다. 단, 스타일을 따로 지정하면 열외된다. */
+      p{
+        color:blueviolet;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+     function makeJSX() {
+      //리액트에서 스타일을 동적으로 구성하여 JSX 상의 특정 요소에 적용
+      const style1 = {
+        'color':'blue',
+        //카멜 표기법인 backgroundColor로 작성해야한다. background-color은 오류나서 안된다.
+        'backgroundColor':'#d1d1d1',
+        'fontSize':'1.5em'
+      }; //객체
+      const style2 = {
+        'color':'red',
+        'backgroundColor':'#ffff00',
+        'fontSize':'1.5em'
+      };
+      return (
+        <>
+          <p style={style1}>스타일 적용 1</p>
+          <p style={style2}>스타일 적용 2</p>
+          {/*JSX내부에서 사용하는 주석, 스타일을 직접 적용시 중괄호 2개 사용*/} 
+          {/* 2개 이상일때는 , 로 구분 : 원래 css에서는 ; 로 구분했음*/} 
+          <p style={{  'fontSize':'2em','color': 'red'}}>스타일 적용 3</p>
+          {/*html에 적용된 전체 스타일에 기본적으로 영향을 받는다.*/}
+          <p>스타일 적용 4</p>
+
+        </>
+      );
+     }
+     const root = ReactDOM.createRoot( document.querySelector("#root"));
+     root.render(makeJSX());
+
+    </script>
+  </body>
+</html>

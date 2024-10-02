@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyImg 컴포넌트 구성</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      let html = (
+        <div>
+          <MyImg src="https://i.namu.wiki/i/m7aKglArMd92DbXFQoUViIGJvfnG2jStehaJL9wil1kaJmN-s_M2OfQEgyg8D1ITX7MCI5ew4wIp1N5YpAoK-utghqICSJjHgTKjzgHgsUfTBW17Y8hzL6vA6Yw5m1x-8-FbK_ukPASrcA29LP59lQ.webp" label="이미지제목/설명"/>
+        </div>
+      );
+
+      //myimg 생성, 함수형 구성, 5분
+      function MyImg (props) { //방법 2
+          let {src, label} = props;
+        return(
+          <>
+          <img src={src} alt={label} width="300" /> 
+          {/*<img src={src} alt={label} style={{width : 300}}/>넓이는 이렇게도 쓸수 있다.*/}
+          <p>{label}</p>
+          </>
+        );
+      }
+
+      //MyImg 컴포넌트는 속성 2개 ( src="네트워크이미지URL", label="이미지제목/설명")을 가진 컴포넌트를 만드시오
+      // const MyImg = ({src, label}) => {
+      //   return(
+      //     <div>
+      //       <img src={src} alt={label} style={{maxWidth: '100%'}}/>
+      //       <p>{label}</p>
+      //       </div>
+      //   );
+      // }; //방법 1
+
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

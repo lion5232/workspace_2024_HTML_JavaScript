@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+ 
+<body>
+    <div>
+            <h3>제목</h3>
+            <h3 id="title">제목</h3>
+            <h3 class="mytitle">클래스 적용</h3>
+            <div class="mytitle">B</div>
+
+            <div>
+                <ul>
+                    <li>A</li>
+                    <li>B</li>
+                    <li>C</li>
+                    <li>
+                        <ol>
+                            <li>자바</li>
+                            <li>스프링부트</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            
+            <div>
+                <table border="1">
+                    <thread> 
+                       <tr>
+                            <th>no</th>
+                            <th>이름</th>
+                       </tr>
+                    </thread>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <th>자바</th>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <th>오라클</th>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <th>스프링부트</th>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <th>자바스크립트</th>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <th>리액트</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <input type = "text" name="uid" />
+            </div>
+    </div>
+    <script>
+        //css selector : css에서 element를 특정하는 방법입니다. 
+        // 방법 1 : 툴을 통해서 획득하는 방법 , 일반적이지 않을 수 있다.
+        // 방법 2 : 규칙을 이해하고 직접 구성하는 방법
+        // * : 모든 요소를 의미한다. 
+            // 이문서상에 존재하는 모든 요소,
+          //  $('*').css('color','red');
+        // 아이디 : 문서상에 고유한 값 ( 암묵적 룰)
+            // 표현식 = # + 아이디값
+            $('#title').css('color','red'); //덮어쓰기가 가능한다.
+            $('#title').html( '<p>내용 변경</p>'); // 요소의 자식을 통째로 변경
+            $('#title').append( '<p>내용 변경</p>'); // 추가
+
+        // 클래스 : 여러개의 요소에 동일한 스타일 묶음(글자는 빨강색, 크기는 2px,.. )을 적용하는 단위
+            // 표현식 = . + class값
+            $('.mytitle').css('background', 'orange');
+            $('.mytitle').css('color', 'yellow');
+        
+        // 요소명: 요소명을 지정
+            //이 문서상에 존재하는 모든 div를 찾아서 전부 다 적용    
+            $('div')
+
+        // 조합: 여러가지 표현식 결합하여 특정
+            // 이 문서상에 존재하는 모든 div들 중에 class 값이 mystyle인 요소를 특정해서, 적용한다.
+            $('div.mytitle').css('color', 'skyblue');
+        
+        // 열거 : 이 요소, 저요소, 등등 나열 하나의 그룹을 표현
+            $('.mytitle, #title').css('color', 'pink');
+
+        // 서열 body > div > h3.mytitle 와 같이 부모 자식간의 관계를 기반으로 특정할 때 사용
+            // 직계자식관계 : 부모요소 > 자식 요소
+            $('ul > li').css('color', 'gray');
+            // 후손관계 : 부모요소 자식요소
+            $('ul li').css('color', 'magenta');
+            
+        // 의사결정 셀렉터
+            // css selector: 표현
+            // 표현 : first, last, nth-child(n) (n 번째 자식의 특정), eq(), gt(), lt(), even ,odd
+            $('tbody > tr:even').css('backgroundColor', 'lightgray');
+            $('tbody > tr:first > th').css('color', 'blue'); // 첫째
+            $('tbody > tr:lt(3)').css('backgroundColor', 'lightgreen'); // 상위 3개만 특정
+            $('tbody > tr:nth-child(4)').css('backgroundColor', 'lightblue'); // 상위 3개만 특정
+        // 속성 셀렉터
+            // input 태그에서 주로 사용
+            // 표현 : [속성명 = 속성값]
+            $('[name=uid]').css('backgroundColor', 'lightgreen');
+    </script>
+</body>
+</html>

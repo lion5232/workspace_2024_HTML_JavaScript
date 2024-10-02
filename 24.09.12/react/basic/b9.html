@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>클래스형 컴포넌트 응용</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      //MyList를 클레스형 컨포넌트로 구성
+      //보여지는 형태
+
+      /*
+      <div>
+        <h3>언어리스트</h3>
+        <ul>
+          <li>자바</li>
+          <li>자바스크립트</li>
+          ...
+        </ul>
+      </div>  
+      */
+     //클래스형 컴포넌트 구성, 먼저 정의후 사용 !!
+     class MyList extends React.Component {
+        //필수 구현
+        render() {
+          const {title, items} = this.props; //맴버는 자신을 밝혀야 한다. props는 클래스형 컴포넌트의 맴버변수임
+          //컴포넌트의 속성을 정의
+
+          // items 문자열을 처리하여 리스트 항목 생성
+          // split(",") : items는 문자열 형식으로 여러 언어를 쉼표(,)로 구분하고 있어. 이 메서드는 이 문자열을 배열로 변환해. 
+          // 구분자를 기반으로 문자열 분해 => 결과는 배열
+          // 예를 들어, "자바, 자바스크립트, 타입스크립트, SQL"는 ["자바", " 자바스크립트", " 타입스크립트", " SQL"]로 변환돼.
+          //.map((item, index) => ...) : map 함수는 배열의 각 요소에 대해 특정 작업을 수행하고, 그 결과를 새로운 배열로 반환해.
+          // index가 현재 요소의 인덱스를 처음부터 가리키고 item 현재 배열 요소
+          const itemList = items.split(",").map((item, index) => ( //배열을 씹고뜯고맛볼수있는 함수 - foreach, map, reduce, filter
+            //key={index}: React는 반복적인 작업으로 JSX가 생성되면, key 속성을 반드시 고유한 값으로 세팅해야한다.!! 이건 vue도 똑같다.
+            // 즉 리스트 항목을 렌더링할 때 각 항목에 고유한 키를 요구해. 이를 통해 항목의 변화를 추적할 수 있어. 
+            // 여기서는  고유한 값으로 배열 데이터의 인덱스를 사용했지만, 데이터의 고유 ID를 사용하는 것이 더 안전해 -            
+            //추가 : {item.trim()}: trim() 메서드는 문자열의 앞뒤 공백을 제거해. 예를 들어, " 자바스크립트"를 "자바스크립트"로 만들어 줘.
+            <li key={index}>{item.trim()}</li>
+            /*
+            itemList 예상 결과
+            [
+              <li key={0}>자바</li>,
+              <li key={1}>자바스크립트</li>,
+              <li key={2}>타입스크립트</li>,
+              <li key={3}>SQL</li>
+            ]
+            */
+          ));
+          //JSX 리턴 html + js + xml
+          return (
+            <div>
+              <h3>{title}</h3>
+              <ul>
+                {itemList} {/*items를 찍으면 자바,자바스크립트, 타입스크립트, SQL가 그대로 나옴 */}
+              </ul>
+            </div>
+          );
+        }
+      }
+      
+      let html = (
+        <div>
+          <MyList title="언어리스트" items="자바,자바스크립트, 타입스크립트, SQL "/>
+        </div>
+      );
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

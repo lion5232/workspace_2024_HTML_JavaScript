@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>기본 구조</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    class MyEvent extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+
+      
+      //필수 구현
+      render() {
+        
+        //JSX 리턴 
+        return (
+          <>
+          </>
+        );
+      }
+    }
+
+
+
+    let html = (
+      <div>
+        <MyEvent/>
+      </div>
+    );
+    const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+    root.render(html);
+  </script>
+</body>
+
+</html>

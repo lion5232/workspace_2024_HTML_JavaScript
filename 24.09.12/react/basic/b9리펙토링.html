@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>클래스형 컴포넌트 응용</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      //MyList를 클레스형 컨포넌트로 구성
+      //보여지는 형태 
+      /*
+      <div>
+        <h3>언어리스트</h3>
+        <ul>
+          <li>자바</li>
+          <li>자바스크립트</li>
+          ...
+        </ul>
+      </div>  
+      */
+     //클래스형 컴포넌트 구성, 먼저 정의후 사용 !!
+     class MyList extends React.Component {
+        //필수 구현
+        render() {
+          const {title, items} = this.props;  
+          const itemList = items.split(",").map((item, index) => (<li key={index}>{item.trim()}</li>));
+          //JSX 리턴 
+          return (
+            <div>
+              <h3>{title}</h3>
+              <ul>
+                {itemList}
+              </ul>
+            </div>
+          );
+        }
+      }
+      
+      let html = (
+        <div>
+          <MyList title="언어리스트" items="자바,자바스크립트, 타입스크립트, SQL "/>
+        </div>
+      );
+
+      const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+      root.render(html);
+    </script>
+  </body>
+</html>

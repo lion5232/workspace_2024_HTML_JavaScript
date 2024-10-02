@@ -1,0 +1,7 @@
+//변수를 정의
+// 제목의 색상, 스타일의 적용위치, 의미, 등등 변수로 구성
+$title-color : blue; 
+
+.title {
+    color:$title-color;
+}

@@ -1,0 +1,23 @@
+{
+  # 프로젝트 명
+  "name": "cjs_test",
+  
+  #프로젝트 버전
+  "version": "1.0.0",
+  #엔트리 포인트 => 프로그램 시작시 진입로(가장 먼저 찾을 파일)
+  "main": "index.js",
+  
+  #각종 명령어, 서버가동, 빌드, 테스트,..
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+  #작성자
+  "author": "",
+  
+  #라이센스
+  "license": "ISC",
+  
+  #코멘트
+  "description": ""
+}

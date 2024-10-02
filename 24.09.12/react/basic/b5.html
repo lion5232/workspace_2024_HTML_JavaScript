@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>가상 DOM 화면 갱신</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      /*
+        - 리액트를 사용하는 이유중 하나 => 가상 DOM을 통해 빠른 화면 갱신 수행
+        - 원리:
+          - 현재 화면과 동일한 DOM을 메모리상에 유지
+          - 변경이슈 발생 => 가상 DOM을 조작
+                          => 탐색/ 비교 알고리즘(트리구조) 작동 => 차이가 나는 부분 조작
+                          => 해당 부분만 원래 화면과 교체 or DOM을 가리키느 포인터를 변경된 DOM으로 대체
+      */
+     //타이머를 통해서 전체 갱신 시도 (리액트 스타일에서, 리액트에 적합하지는 않음)
+      // 현재 시,분,초를 표시 => 시계
+      setInterval(()=>{
+        //현재 시,분, 초 정보 획득
+        const d = new Date();
+        const h = d.getHours();
+        const m = d.getMinutes();
+        const s = d.getSeconds();
+
+        //JSX 생성
+        let html = (
+        <div>
+          <p>  시:{h} 분:{m} 초:{s} </p>
+           
+        </div>
+        );
+        
+        const root = ReactDOM.createRoot(document.querySelector("#root")); // 가상 DOM 생성
+
+        root.render(html);
+        // 리액트 구조상 적절하지 않음(경고나 오류 발생될 수 있음)
+
+      }, 1*1000 );//반복 타이머
+
+    
+     
+    </script>
+  </body>
+</html>

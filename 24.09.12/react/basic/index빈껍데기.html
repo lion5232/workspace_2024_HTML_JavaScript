@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Add React in One Minute</title>
+</head>
+
+<body>
+
+  <!-- 리액트가 조작해서 만든 내용이 삽입되는 최상의 엘리먼트임
+      - 화면 전체가 리액트로 구성될수도 있고(아래처럼)
+      - 특정  
+  -->
+  <div id="root"></div>
+
+  <!-- 리액트 사용하기 -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+
+  <!-- es6이상 코드를 es5기준 코드로 자동 변환-->
+  <script src="https://unpkg.com/@babel/standalone/babel.mion.js"></script>
+
+  <!-- 실제 리액트 작성 코드 (es6이상으로 구성)-->
+   <script type="text/babel"></script>
+</body>
+
+</html>
